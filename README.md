@@ -1,114 +1,86 @@
 # H-Appy
 
-## An app to remind you of fun things to do that make you happy, by HappyHaddock
+[Project Dependencies](dependencies) | [Getting Started](#getting-started) | [Running Tests](#running-tests)
 
----
+## The activity finder app
 
-## Planning
+Welcome to the backend API of H-Appy. You can see the repository for the frontend client [here](https://github.com/AJ8GH/h-appy-client-clone)
 
-Theme:
+Have you ever wanted to do something, either outdoors indoors, large or small, but the one thing stopping you was inspiration? H-Appy is an app designed to solve this problem. Using a database of carefully thought out activities, categorised by size, cost and accessibility, this API links to the frontend client and provides suggestions to liven up the users free time.
 
-- Menu
-- Nibble main dessert (activity size / nature)
-- Al fresco or indoor activities
+The API is simple in its design and its use.
 
-Purpose:
+## Getting Started
 
-- Find interesting things to do (indoor + outdoor)
-- Improve mental health
+You will need a recent version of Node.js installed.
 
-Interactions:
+1. First clone this repository
 
-- Sign-up / in / out (maybe not needed?)
-- Select likes and dislikes
-- ( Week / meal plan ) - how many activities per week / type of activities
-- You can filter the suggestions for the day
-- Generate idea - click button to generate activity idea
-- Mark activities as done
-- Rate activities - ratings visible for users
-- Enter location
-- Map - show activities nearby
-- Stretch goal - show relevant results for suggested activity e.g. movie listings
-- Run / walk generation API
-- Accessibility score for each activity
-- Activities:
-  - stored in our backend DB
-  - Wild card / catch of the day - From [Bored API](https://www.boredapi.com/documentation#endpoints-key)
+```shell
+git clone git@github.com:AJ8GH/h-appy-client-clone.git
+```
 
-Platform
+2. Navigate to the root of the project and install the dependencies
+```shell
+cd h-appy-client-clone
+npm install
+```
 
-- Mobile
+3. Setting up database access: You will need to create a `.env` file in the root of the project and contact us so that we can grant you access to the database and provide you with some environment variables. Once this is configured, you will be able to run tests, seed the database with data and contribute to the project.
 
-Tools
+## Running Tests
 
-- React Native
-- Node
-- Express
-- MongoDB
-- MERN!
+Make sure you are in the root of the project and run the `npm test` command.
 
-MVP
+## Usage
 
-- Open App and see Menu of activities
-- Choose activities based on ‘size’
-- See activities based on filter - Nibbles / Main Meals / Desserts
+The public API is deployed via Heroku, at https://happy-haddocks.herokuapp.com
 
-To do
+To get all activities from the database, make a GET request to the `/activities` route
 
-- Need to choose starting menu items
+e.g.
+```js
+fetch('/activities')
+// ...
+```
 
-## User Stories
+The JSON response will be in the format:
 
-- Core Functionality
-- As a bored person, so that I can be not bored, I want to see stuff I could do that I like doing
-- As a person trying to hold off the start of the workday, so that I can do something to wake my brain up and prepare myself for the day, I want to see quick activities that are fun but short (i.e. appetisers)
-- As a person facing down a weekend of existential dread, so that I can avoid facing the black void, I want to see activities that are fun but quite long (i.e. mains or banquets or specials)
-- As a person wanting to treat myself, I want to see fun & indulgent activities (i.e. deserts)
-- As a person trying to while away an evening, I want to see fun but medium sized activities (i.e. mains)
-- As a user, So that I can better understand what the titles mean, I want to add descriptions to each menu item
-- As a user, So that i can see what preparation an activity would involve, I want to add notes (i.e. “ingredients”) to each activity
-- As an indecisive person, so that i can organize my menu easily, I want to be able to move an activity from one heading to another
+```JSON
+{
+  "nibbles": [ /* { all nibbles } */ ],
+  "appetisers": [ /* { all appetisers } */ ],
+  "mains": [ /* { all mains } */ ],
+  "desserts": [ /* { all desserts } */ ]
+}
+```
 
-Suggestions
-As a bored person who feels uninspired, so that I can add more stuff to my menu, I want to see suggestions for stuff I could do but probably won’t
-As a person who lacks imagination, so that I can fill out my menu, I want to see what other people have put on their menus
-As a mild narcissist, so that I don’t accidentally reveal my personality flaws to the world, I want to make certain items private
-As a man of taste and culture, so that I can peruse only the finest of options, I want to rate other people’s menu items
-As a regular person, for my own mental wellbeing, I don’t want to see other people’s rating of my items unless I specifically look for them
+Each activity object has the format:
 
-## Workflow:
+```JSON
+{
+  "id": "<string>",
+  "name": "<string>",
+  "description": "<string>",
+  "cost": "<number>",
+  "accessibility": "<number>",
+  "size": "<string>",
+}
+```
 
-- 2 day sprints
-- Always work on branch, no pushing to master
-- All PR merges require review from 2 other team members
-- Clear, communicative commit messages
-- Linting - Prettier
-- Set up CI - Circle or travis
-- Stretch goal - Deploy to heroku
-- Testing - TDD!!!!! BDD
-- Cypress - like capybara for react
-- Choose a testing framework (Jest maybe?)
-- Documentation - Readme, Wiki to document learning
-- Choose a Scrum-Master every day - responsible for driving the meetings forward
+## Dependencies
 
-## Meeting check-list
-
-- Review our tickets and features for the day
-- Choose pairs
-- Allocate tickets
-
-## Daily Schedule
-
-- 9:30 - Stand ups
-- 9:45 - get cracking!
-- 9:45 - 13:00 morning sesh
-- 14:00 - 17:00 afternoon sesh
-- 17:00 - Retro
-
-## Project Schedule
-
-- 8 Days until Demo day
-- 6 Days to make features
-- Wedensday next week - feature freeze, refactoring
-- Thursday next week demo practice
-- Friday next week - demo day
+modules:
+- `"bcryptjs": "^2.4.3"`
+- `"dotenv": "^8.2.0"`
+- `"express": "4.17.1"`
+- `"jsonwebtoken": "^8.5.1"`
+- `"mongoose": "5.11.12"`
+- `"prettier": "^2.2.1"`
+- `"validator": "^13.5.2"`
+- `"chai": "^4.3.4"`
+- `"chai-http": "^4.3.0"`
+- `"jest": "^26.6.3"`
+- `"mocha": "^8.3.2"`
+- `"sinon": "^10.0.0"`
+- `"supertest": "^6.1.3`
