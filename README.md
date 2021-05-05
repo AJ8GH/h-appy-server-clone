@@ -26,6 +26,13 @@ cd h-appy-client-clone
 npm install
 ```
 
+3. Setting up database access: You will need to create a `.env` file in the root of the project and contact us so that we can grant you access to the database and provide you with some environment variables. Once this is configured, you will be able to run tests, seed the database with data and contribute to the project.
+
+## Running Tests
+
+Make sure you are in the root of the project and run the `npm test` command.
+
+## Usage
 
 
 ## Dependencies
@@ -44,8 +51,3 @@ modules:
 - `"mocha": "^8.3.2"`
 - `"sinon": "^10.0.0"`
 - `"supertest": "^6.1.3`
-
-
-## Running Tests
-
-## Usage
