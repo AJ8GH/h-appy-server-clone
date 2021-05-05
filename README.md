@@ -34,6 +34,39 @@ Make sure you are in the root of the project and run the `npm test` command.
 
 ## Usage
 
+The public API is deployed via Heroku, at https://happy-haddocks.herokuapp.com
+
+To get all activities from the database, make a GET request to the `/activities` route
+
+e.g.
+```js
+fetch('/activities')
+// ...
+```
+
+The JSON response will be in the format:
+
+```JSON
+{
+  "nibbles": [ /* { all nibbles } */ ],
+  "appetisers": [ /* { all appetisers } */ ],
+  "mains": [ /* { all mains } */ ],
+  "desserts": [ /* { all desserts } */ ]
+}
+```
+
+Each activity object has the format:
+
+```JSON
+{
+  "id": "<string>",
+  "name": "<string>",
+  "description": "<string>",
+  "cost": "<number>",
+  "accessibility": "<number>",
+  "size": "<string>",
+}
+```
 
 ## Dependencies
 
